@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M. Gymnastiar — ML Engineer & Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1f35;
+    --navy-mid: #162b47;
+    --blue: #2563eb;
+    --blue-light: #3b82f6;
+    --cyan: #06b6d4;
+    --gold: #f59e0b;
+    --cream: #faf8f4;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --section-bg: #f8fafc;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 4rem;
+    background: rgba(15,31,53,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem; color: var(--white); letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--cyan); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -20%; right: -10%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -10%; left: 20%;
+    width: 40vw; height: 40vw;
+    background: radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-text { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.3);
+    color: var(--cyan); font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 2rem; margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    color: var(--white); line-height: 1.05;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero-name .accent { color: var(--cyan); font-style: italic; }
+  .hero-role {
+    font-size: 1.1rem; color: rgba(255,255,255,0.55);
+    font-weight: 300; margin-bottom: 2rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-desc {
+    font-size: 1rem; color: rgba(255,255,255,0.7);
+    line-height: 1.75; max-width: 480px; margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.35s ease both;
+  }
+  .badge {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.75); font-size: 0.78rem; font-weight: 500;
+    padding: 0.3rem 0.85rem; border-radius: 2rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--blue); color: var(--white);
+    padding: 0.8rem 2rem; border-radius: 0.5rem;
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.2); color: var(--white);
+    padding: 0.8rem 2rem; border-radius: 0.5rem;
+    text-decoration: none; font-weight: 500; font-size: 0.9rem;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-ghost:hover { border-color: var(--cyan); background: rgba(6,182,212,0.08); transform: translateY(-2px); }
+
+  /* Stats cards */
+  .hero-stats {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+    padding-left: 3rem;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1rem; padding: 1.5rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .stat-card:hover { border-color: rgba(6,182,212,0.3); background: rgba(6,182,212,0.05); }
+  .stat-card.wide { grid-column: span 2; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem; color: var(--cyan); line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.5); font-weight: 400; line-height: 1.4; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; }
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--blue);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem); color: var(--navy);
+    line-height: 1.15;
+  }
+  .section-title em { color: var(--blue); font-style: italic; }
+
+  /* ── ABOUT ── */
+  .about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 5rem; align-items: start; max-width: 1100px; margin: 0 auto; }
+  .about-body { font-size: 1.05rem; color: var(--muted); line-height: 1.8; }
+  .about-body p { margin-bottom: 1.2rem; }
+  .about-highlights { display: flex; flex-direction: column; gap: 1rem; }
+  .highlight-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.2rem; border: 1px solid var(--border);
+    border-radius: 0.75rem; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .highlight-item:hover { border-color: var(--blue); box-shadow: 0 4px 20px rgba(37,99,235,0.08); }
+  .highlight-icon {
+    width: 40px; height: 40px; min-width: 40px;
+    border-radius: 0.5rem; background: rgba(37,99,235,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .highlight-text strong { display: block; font-size: 0.9rem; font-weight: 600; color: var(--navy); }
+  .highlight-text span { font-size: 0.82rem; color: var(--muted); }
+
+  /* ── EXPERIENCE ── */
+  .experience { background: var(--section-bg); }
+  .timeline { max-width: 800px; margin: 0 auto; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--blue), var(--cyan), transparent);
+  }
+  .timeline-item { display: flex; gap: 2rem; margin-bottom: 3rem; position: relative; }
+  .timeline-dot {
+    width: 42px; height: 42px; min-width: 42px;
+    border-radius: 50%; background: var(--white);
+    border: 2px solid var(--blue); display: flex; align-items: center;
+    justify-content: center; font-size: 1.1rem; position: relative; z-index: 1;
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+  }
+  .timeline-content {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 1rem; padding: 1.5rem 2rem; flex: 1;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .timeline-content:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.06); border-color: var(--blue); }
+  .timeline-meta {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .timeline-org { font-weight: 700; font-size: 1rem; color: var(--navy); }
+  .timeline-date {
+    font-size: 0.78rem; font-weight: 500; color: var(--blue);
+    background: rgba(37,99,235,0.08); padding: 0.2rem 0.7rem; border-radius: 2rem;
+  }
+  .timeline-role { font-size: 0.88rem; color: var(--muted); font-style: italic; margin-bottom: 1rem; }
+  .timeline-bullets { list-style: none; }
+  .timeline-bullets li {
+    font-size: 0.9rem; color: var(--text); padding: 0.25rem 0 0.25rem 1.2rem;
+    position: relative; line-height: 1.5;
+  }
+  .timeline-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--cyan); font-size: 0.8rem; }
+
+  /* ── PROJECTS ── */
+  .projects { background: var(--white); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .project-card {
+    border: 1px solid var(--border); border-radius: 1.25rem;
+    overflow: hidden; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    background: var(--white);
+  }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.09); border-color: var(--blue); }
+  .project-header {
+    padding: 2rem 2rem 1.5rem;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    position: relative; overflow: hidden;
+  }
+  .project-header::after {
+    content: ''; position: absolute; right: -20px; top: -20px;
+    width: 100px; height: 100px; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .project-emoji { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+  .project-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 0.3rem; }
+  .project-type { font-size: 0.75rem; color: var(--cyan); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .project-body { padding: 1.5rem 2rem 2rem; }
+  .project-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.2rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
+  .tag {
+    background: rgba(37,99,235,0.07); color: var(--blue);
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+    padding: 0.25rem 0.6rem; border-radius: 0.3rem;
+  }
+  .project-link {
+    font-size: 0.82rem; font-weight: 600; color: var(--blue);
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 0.6rem; }
+
+  /* ── SKILLS ── */
+  .skills { background: var(--navy); padding: 6rem 4rem; }
+  .skills .section-title { color: var(--white); }
+  .skills .section-tag { color: var(--cyan); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+  .skill-group {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1rem; padding: 2rem;
+    transition: border-color 0.3s;
+  }
+  .skill-group:hover { border-color: rgba(6,182,212,0.4); }
+  .skill-group-title {
+    font-size: 0.75rem; font-weight: 700; color: var(--cyan);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem;
+    padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .skill-item { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+  .skill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue-light); flex-shrink: 0; }
+  .skill-name { font-size: 0.88rem; color: rgba(255,255,255,0.75); }
+
+  /* ── ACHIEVEMENTS ── */
+  .achievements { background: var(--section-bg); }
+  .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .achievement-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 1rem; padding: 1.75rem;
+    transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .achievement-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.07); border-color: var(--gold); transform: translateY(-3px); }
+  .achievement-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+  .achievement-year {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--blue); text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .achievement-title { font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.3rem; line-height: 1.4; }
+  .achievement-org { font-size: 0.82rem; color: var(--muted); }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: linear-gradient(135deg, var(--navy) 0%, #0d2a4a 100%);
+    text-align: center; padding: 6rem 4rem;
+  }
+  .contact .section-title { color: var(--white); margin-bottom: 1rem; }
+  .contact-sub { font-size: 1rem; color: rgba(255,255,255,0.55); margin-bottom: 3rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    color: var(--white); text-decoration: none; padding: 0.85rem 1.75rem;
+    border-radius: 0.6rem; font-size: 0.9rem; font-weight: 500;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { background: rgba(37,99,235,0.25); border-color: var(--blue); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); text-align: center; padding: 1.5rem;
+    font-size: 0.8rem; color: rgba(255,255,255,0.3);
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; }
+    .hero-stats { padding-left: 0; margin-top: 3rem; }
+    section { padding: 4rem 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .contact { padding: 4rem 2rem; }
+  }
+  @media (max-width: 600px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .stat-card.wide { grid-column: span 2; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">M.<span>G</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#achievements">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Available for Remote Opportunities</div>
+    <h1 class="hero-name">M. <span class="accent">Gymnastiar</span></h1>
+    <p class="hero-role">ML Engineer · Data Scientist · Educator · Mentor</p>
+    <p class="hero-desc">Computer Education graduate (GPA 3.72) pursuing Master of Computer Science at UGM. Two-time national GEMASTIK finalist with proven expertise in machine learning, data science, and full-stack development.</p>
+    <div class="hero-badges">
+      <span class="badge">Python</span>
+      <span class="badge">Machine Learning</span>
+      <span class="badge">TensorFlow</span>
+      <span class="badge">Laravel</span>
+      <span class="badge">Flask</span>
+      <span class="badge">Data Science</span>
+    </div>
+    <div class="hero-cta">
+      <a href="https://github.com/Agim-dudu" class="btn-primary" target="_blank">⚡ View GitHub</a>
+      <a href="#contact" class="btn-ghost">✉ Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">2×</div>
+      <div class="stat-label">GEMASTIK National Finalist</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3.72</div>
+      <div class="stat-label">GPA / 4.00</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">20+</div>
+      <div class="stat-label">ML Mentees Guided</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">4+</div>
+      <div class="stat-label">ML & Web Projects</div>
+    </div>
+    <div class="stat-card wide">
+      <div class="stat-num" style="font-size:1.4rem; color: rgba(255,255,255,0.5);">Currently pursuing</div>
+      <div class="stat-label" style="font-size:0.95rem; color: rgba(255,255,255,0.7); margin-top:0.2rem;">M.Cs. at Universitas Gadjah Mada · Part-time remote available</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-header">
+    <div class="section-tag">About Me</div>
+    <h2 class="section-title">Turning Data Into <em>Impact</em></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>I'm M. Gymnastiar — a machine learning engineer and educator based in Banjarmasin, South Kalimantan. I hold a Bachelor's degree in Computer Education from Universitas Lambung Mangkurat (GPA: 3.72/4.00), and I'm currently advancing my expertise through a Master of Computer Science program at Universitas Gadjah Mada.</p>
+      <p>My work sits at the intersection of applied AI and education — I build production-grade ML systems while simultaneously mentoring the next generation of practitioners. I've mentored 20+ participants remotely through the DBS Foundation Coding Camp, built recommendation systems, predictive analytics pipelines, and interactive educational platforms.</p>
+      <p>I'm a two-time national finalist at GEMASTIK (the largest ICT competition for Indonesian university students), a PKM incentive recipient, and a Best Participant awardee at PT GITS Indonesia. I'm actively seeking flexible remote engagements alongside my graduate studies.</p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-item">
+        <div class="highlight-icon">🎓</div>
+        <div class="highlight-text">
+          <strong>M.Cs. at UGM</strong>
+          <span>Universitas Gadjah Mada — 2025 onwards</span>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-icon">🏆</div>
+        <div class="highlight-text">
+          <strong>2× GEMASTIK Finalist</strong>
+          <span>ICT Scientific Paper — 2023 & 2024</span>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-icon">🤖</div>
+        <div class="highlight-text">
+          <strong>ML Mentor (Remote)</strong>
+          <span>DBS Foundation Coding Camp — 2025</span>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-icon">💻</div>
+        <div class="highlight-text">
+          <strong>Full-Stack Dev</strong>
+          <span>PT GITS Indonesia — Best Participant Award</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="section-header">
+    <div class="section-tag">Work History</div>
+    <h2 class="section-title">Professional <em>Experience</em></h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot">🤖</div>
+      <div class="timeline-content">
+        <div class="timeline-meta">
+          <span class="timeline-org">Coding Camp — DBS Foundation</span>
+          <span class="timeline-date">Feb – Jul 2025</span>
+        </div>
+        <div class="timeline-role">Machine Learning Mentor · Remote</div>
+        <ul class="timeline-bullets">
+          <li>Mentored 20+ participants asynchronously via Discord/LMS, maintaining weekly delivery schedules independently.</li>
+          <li>Facilitated 10+ live instructor-led training sessions on supervised and unsupervised learning.</li>
+          <li>Conducted weekly consultations to debug code and review ML project submissions.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">🎓</div>
+      <div class="timeline-content">
+        <div class="timeline-meta">
+          <span class="timeline-org">Universitas Lambung Mangkurat</span>
+          <span class="timeline-date">Aug 2023 – Aug 2024</span>
+        </div>
+        <div class="timeline-role">Laboratory Teaching Assistant</div>
+        <ul class="timeline-bullets">
+          <li>Facilitated practical lab sessions for 60+ students in Operating Systems and Intelligent Systems.</li>
+          <li>Improved average lab scores by ~15% through targeted guidance and material updates.</li>
+          <li>Prepared and maintained learning materials and assessment rubrics.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">📚</div>
+      <div class="timeline-content">
+        <div class="timeline-meta">
+          <span class="timeline-org">SMAN 4 Banjarmasin</span>
+          <span class="timeline-date">Jan – Jun 2024</span>
+        </div>
+        <div class="timeline-role">Informatics Teaching Assistant</div>
+        <ul class="timeline-bullets">
+          <li>Delivered structured Informatics lessons to Grade X students covering algorithms and data structures.</li>
+          <li>Mentored students preparing for the National Science Olympiad (OSN) in Informatics.</li>
+          <li>Developed modular teaching materials adopted by the full teaching team.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">⚙️</div>
+      <div class="timeline-content">
+        <div class="timeline-meta">
+          <span class="timeline-org">PT GITS Indonesia</span>
+          <span class="timeline-date">Aug 2023 – Jan 2024</span>
+        </div>
+        <div class="timeline-role">Full Stack Web Developer · Remote</div>
+        <ul class="timeline-bullets">
+          <li>Built and deployed multiple web applications using Laravel in a fully remote environment.</li>
+          <li>Implemented CRUD systems, file upload pipelines, and automated email notifications.</li>
+          <li>Integrated third-party REST APIs and documented endpoints for team-wide usage.</li>
+          <li>Awarded Best Participant & Best Team upon project completion.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="section-header">
+    <div class="section-tag">Work Samples</div>
+    <h2 class="section-title">Selected <em>Projects</em></h2>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-emoji">🌱</span>
+        <div class="project-title">Selamatkan Pangan</div>
+        <div class="project-type">ML · Flask · Laravel · GEMASTIK XVII</div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">Food waste prediction system using Random Forest classification. Achieved 89% accuracy on national-scale dataset. Backend served via Flask REST API, integrated with Laravel dashboard.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Flask</span><span class="tag">Laravel</span><span class="tag">REST API</span>
+        </div>
+        <a href="#" class="project-link">View Project →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-emoji">🎌</span>
+        <div class="project-title">Anime Recommendation System</div>
+        <div class="project-type">Deep Learning · Collaborative Filtering</div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">Hybrid recommendation engine combining Content-Based Filtering (Cosine Similarity) and Collaborative Filtering (RecommenderNet deep learning). Low prediction error with high relevance scores.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">RecommenderNet</span><span class="tag">Cosine Similarity</span>
+        </div>
+        <a href="#" class="project-link">View Project →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-emoji">🌍</span>
+        <div class="project-title">CO₂ Emission Prediction</div>
+        <div class="project-type">Predictive Analytics · Ensemble ML</div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">Identified key features (Engine Size, Fuel Consumption) driving CO₂ emissions. Ensemble model using Random Forest and AdaBoost achieved low MSE, supporting eco-vehicle design decisions.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">Random Forest</span><span class="tag">AdaBoost</span><span class="tag">Pandas</span><span class="tag">EDA</span>
+        </div>
+        <a href="#" class="project-link">View Project →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-emoji">🚲</span>
+        <div class="project-title">Bike Sharing Data Analysis</div>
+        <div class="project-type">Data Analysis · Business Insight</div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">Full EDA revealing that registered users dominate rentals, peak hours differ on weekdays (17:00) vs weekends (12:00), and sunny weather drives maximum demand. Actionable for marketing strategy.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Seaborn</span><span class="tag">Matplotlib</span><span class="tag">EDA</span>
+        </div>
+        <a href="#" class="project-link">View Project →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-emoji">🖼️</span>
+        <div class="project-title">Stegolearn</div>
+        <div class="project-type">EdTech · Web · Research & Development</div>
+      </div>
+      <div class="project-body">
+        <p class="project-desc">Interactive web-based learning platform for Steganography in digital image processing courses. Built using R&D methodology, implemented and validated in Computer Education program.</p>
+        <div class="project-tags">
+          <span class="tag">Laravel</span><span class="tag">Bootstrap</span><span class="tag">R&D</span><span class="tag">EdTech</span>
+        </div>
+        <a href="#" class="project-link">View Project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="section-header">
+    <div class="section-tag">Capabilities</div>
+    <h2 class="section-title">Technical <em style="color:var(--cyan)">Skills</em></h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Core ML & Data</div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Python (Pandas, NumPy)</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Scikit-learn</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">TensorFlow / Keras</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Data Analysis & EDA</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">SQL & Database Design</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Web Development</div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Laravel (PHP)</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Flask (Python)</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">REST API Integration</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Tailwind CSS</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Bootstrap</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Tools & Soft Skills</div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Git & GitHub</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Jupyter Notebook</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Async Remote Work</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Technical Mentoring</span></div>
+      <div class="skill-item"><span class="skill-dot"></span><span class="skill-name">Research Writing</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements" id="achievements">
+  <div class="section-header">
+    <div class="section-tag">Recognition</div>
+    <h2 class="section-title">Awards & <em>Achievements</em></h2>
+  </div>
+  <div class="achievements-grid">
+    <div class="achievement-card">
+      <div class="achievement-icon">🏆</div>
+      <div class="achievement-year">Sep 2024</div>
+      <div class="achievement-title">GEMASTIK XVII Finalist</div>
+      <div class="achievement-org">ICT Scientific Paper Division · Semarang · BPTI</div>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">📄</div>
+      <div class="achievement-year">Jun 2024</div>
+      <div class="achievement-title">PKM 2024 — Incentive Award</div>
+      <div class="achievement-org">Scientific Article Category · Universitas Lambung Mangkurat</div>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">⭐</div>
+      <div class="achievement-year">Jan 2024</div>
+      <div class="achievement-title">Best Participant & Best Team</div>
+      <div class="achievement-org">MSIB Independent Study · PT GITS Indonesia</div>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-icon">🥇</div>
+      <div class="achievement-year">Sep 2023</div>
+      <div class="achievement-title">GEMASTIK XVI Finalist</div>
+      <div class="achievement-org">ICT Scientific Paper Division · Malang · BPTI</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-tag" style="color:var(--cyan)">Let's Connect</div>
+  <h2 class="section-title" style="margin-bottom:1rem;">Open for Remote <em style="color:var(--cyan)">Opportunities</em></h2>
+  <p class="contact-sub">Available part-time / flexible remote — alongside Master's studies at UGM. Let's build something impactful together.</p>
+  <div class="contact-links">
+    <a href="mailto:agimduuduu@gmail.com" class="contact-link">✉ agimduuduu@gmail.com</a>
+    <a href="https://github.com/Agim-dudu" class="contact-link" target="_blank">⚡ github.com/Agim-dudu</a>
+    <a href="tel:+6281258624198" class="contact-link">📱 +62 812 5862 4198</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 M. Gymnastiar · Banjarmasin, South Kalimantan, Indonesia</p>
+</footer>
+
+</body>
+</html>
