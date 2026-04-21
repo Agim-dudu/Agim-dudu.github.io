@@ -381,6 +381,14 @@
       align-items: center;
       justify-content: center;
       font-size: 1.2rem;
+      overflow: hidden;
+    }
+
+    .highlight-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.5rem;
     }
 
     .highlight-text strong {
@@ -437,6 +445,14 @@
       position: relative;
       z-index: 1;
       box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      overflow: hidden;
+    }
+
+    .timeline-dot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
     .timeline-content {
@@ -549,10 +565,15 @@
       background: rgba(255, 255, 255, 0.04);
     }
 
-    .project-emoji {
-      font-size: 2rem;
+    /* Icon gambar di project header */
+    .project-icon {
+      width: 52px;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 0.6rem;
       margin-bottom: 0.75rem;
       display: block;
+      border: 2px solid rgba(255, 255, 255, 0.12);
     }
 
     .project-title {
@@ -706,8 +727,18 @@
     }
 
     .achievement-icon {
-      font-size: 1.8rem;
+      width: 44px;
+      height: 44px;
       margin-bottom: 0.75rem;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .achievement-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.5rem;
     }
 
     .achievement-year {
@@ -941,28 +972,36 @@
       </div>
       <div class="about-highlights">
         <div class="highlight-item">
-          <div class="highlight-icon">🎓</div>
+          <div class="highlight-icon">
+            <img src="img/Screenshot 2026-04-21 110449.png" alt="UGM" />
+          </div>
           <div class="highlight-text">
             <strong>M.Cs. at UGM</strong>
             <span>Universitas Gadjah Mada — 2025 onwards</span>
           </div>
         </div>
         <div class="highlight-item">
-          <div class="highlight-icon">🏆</div>
+          <div class="highlight-icon">
+            <img src="img/Screenshot 2026-04-21 110449.png" alt="GEMASTIK" />
+          </div>
           <div class="highlight-text">
             <strong>2× GEMASTIK Finalist</strong>
             <span>ICT Scientific Paper — 2023 & 2024</span>
           </div>
         </div>
         <div class="highlight-item">
-          <div class="highlight-icon">🤖</div>
+          <div class="highlight-icon">
+            <img src="img/Screenshot 2026-04-21 110449.png" alt="ML Mentor" />
+          </div>
           <div class="highlight-text">
             <strong>ML Mentor (Remote)</strong>
             <span>DBS Foundation Coding Camp — 2025</span>
           </div>
         </div>
         <div class="highlight-item">
-          <div class="highlight-icon">💻</div>
+          <div class="highlight-icon">
+            <img src="img/Screenshot 2026-04-21 110449.png" alt="Full-Stack Dev" />
+          </div>
           <div class="highlight-text">
             <strong>Full-Stack Dev</strong>
             <span>PT GITS Indonesia — Best Participant Award</span>
@@ -980,7 +1019,9 @@
     </div>
     <div class="timeline">
       <div class="timeline-item">
-        <div class="timeline-dot">🤖</div>
+        <div class="timeline-dot">
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="DBS Foundation" />
+        </div>
         <div class="timeline-content">
           <div class="timeline-meta">
             <span class="timeline-org">Coding Camp — DBS Foundation</span>
@@ -996,7 +1037,9 @@
         </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-dot">🎓</div>
+        <div class="timeline-dot">
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="ULM" />
+        </div>
         <div class="timeline-content">
           <div class="timeline-meta">
             <span class="timeline-org">Universitas Lambung Mangkurat</span>
@@ -1011,7 +1054,9 @@
         </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-dot">📚</div>
+        <div class="timeline-dot">
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="SMAN 4" />
+        </div>
         <div class="timeline-content">
           <div class="timeline-meta">
             <span class="timeline-org">SMAN 4 Banjarmasin</span>
@@ -1027,7 +1072,9 @@
         </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-dot">⚙️</div>
+        <div class="timeline-dot">
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="PT GITS" />
+        </div>
         <div class="timeline-content">
           <div class="timeline-meta">
             <span class="timeline-org">PT GITS Indonesia</span>
@@ -1054,7 +1101,7 @@
     <div class="projects-grid">
       <div class="project-card">
         <div class="project-header">
-          <span class="project-emoji">🌱</span>
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="Selamatkan Pangan" class="project-icon" />
           <div class="project-title">Selamatkan Pangan</div>
           <div class="project-type">ML · Flask · Laravel · GEMASTIK XVII</div>
         </div>
@@ -1086,7 +1133,7 @@
       </div>
       <div class="project-card">
         <div class="project-header">
-          <span class="project-emoji">🌍</span>
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="CO2 Emission" class="project-icon" />
           <div class="project-title">CO₂ Emission Prediction</div>
           <div class="project-type">Predictive Analytics · Ensemble ML</div>
         </div>
@@ -1104,7 +1151,7 @@
       </div>
       <div class="project-card">
         <div class="project-header">
-          <span class="project-emoji">🚲</span>
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="Bike Sharing" class="project-icon" />
           <div class="project-title">Bike Sharing Data Analysis</div>
           <div class="project-type">Data Analysis · Business Insight</div>
         </div>
@@ -1122,7 +1169,7 @@
       </div>
       <div class="project-card">
         <div class="project-header">
-          <span class="project-emoji">🖼️</span>
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="Stegolearn" class="project-icon" />
           <div class="project-title">Stegolearn</div>
           <div class="project-type">EdTech · Web · Research & Development</div>
         </div>
@@ -1184,27 +1231,35 @@
     </div>
     <div class="achievements-grid">
       <div class="achievement-card">
-        <div class="achievement-icon">🏆</div>
+        <div class="achievement-icon">
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="GEMASTIK XVII" />
+        </div>
         <div class="achievement-year">Sep 2024</div>
         <div class="achievement-title">GEMASTIK XVII Finalist</div>
         <div class="achievement-org">ICT Scientific Paper Division · Semarang · BPTI</div>
-        <div class="achievement-org"> <a href="https://stegolearn.research-media.web.id/" target="_blank"
+        <div class="achievement-org"><a href="https://stegolearn.research-media.web.id/" target="_blank"
             class="project-link">See →</a></div>
       </div>
       <div class="achievement-card">
-        <div class="achievement-icon">📄</div>
+        <div class="achievement-icon">
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="PKM 2024" />
+        </div>
         <div class="achievement-year">Jun 2024</div>
         <div class="achievement-title">PKM 2024 — Incentive Award</div>
         <div class="achievement-org">Scientific Article Category · Universitas Lambung Mangkurat</div>
       </div>
       <div class="achievement-card">
-        <div class="achievement-icon">⭐</div>
+        <div class="achievement-icon">
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="Best Participant" />
+        </div>
         <div class="achievement-year">Jan 2024</div>
         <div class="achievement-title">Best Participant & Best Team</div>
         <div class="achievement-org">MSIB Independent Study · PT GITS Indonesia</div>
       </div>
       <div class="achievement-card">
-        <div class="achievement-icon">🥇</div>
+        <div class="achievement-icon">
+          <img src="img/Screenshot 2026-04-21 110449.png" alt="GEMASTIK XVI" />
+        </div>
         <div class="achievement-year">Sep 2023</div>
         <div class="achievement-title">GEMASTIK XVI Finalist</div>
         <div class="achievement-org">ICT Scientific Paper Division · Malang · BPTI</div>
